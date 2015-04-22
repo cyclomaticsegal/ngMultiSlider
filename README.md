@@ -6,7 +6,7 @@ associated data points within the given ranges.
 
 ngMultiPointSlider is a work in progress and not yet rated as stable. Feel free to twist in any direction.
 
-![Image of slider](https://github.com/cyclomaticsegal/ngMultiSlider/master/img/slider.png)
+![Image of slider](https://github.com/cyclomaticsegal/ngMultiSlider/tree/master/img/slider.png)
 
 ## Setup
 
@@ -19,7 +19,7 @@ $npm install
 
 ## Configure
 
-![Image of slider](https://github.com/cyclomaticsegal/ngMultiSlider/master/img/code.png)
+![Image of slider](https://github.com/cyclomaticsegal/ngMultiSlider/tree/master/img/code.png)
 
 
 ## Callbacks
