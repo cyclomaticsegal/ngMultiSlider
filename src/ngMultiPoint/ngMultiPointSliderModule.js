@@ -26,7 +26,8 @@ ngMultiSliderModule.directive('ngMultiPointSlider', function() {
             backColor:'@',
             histogramHoverColor:'@',
             showAxis:'@',
-            onReleaseSlider: '&'
+            onReleaseSlider: '&',
+            onHoverDataPoint: '&'
         },
         controller: 'ngMultiPointSliderController',
         link: function (scope, elem, attrs, ctrl) {
@@ -44,7 +45,13 @@ ngMultiSliderModule.directive('ngMultiPointSlider', function() {
 
                 ctrl.dragStop = function(data){
                     if(scope.onReleaseSlider){
-                        scope.onReleaseSlider({d:data});
+                        scope.onReleaseSlider({data:data});
+                    }
+                };
+
+                ctrl.hoverDataPoint = function(data){
+                    if(scope.onHoverDataPoint){
+                        scope.onHoverDataPoint({data:data});
                     }
                 };
 
@@ -52,7 +59,7 @@ ngMultiSliderModule.directive('ngMultiPointSlider', function() {
                               scope.backColor, scope.histogramHoverColor);
 
             },200, true);
-            
+
         },
         replace: true,
         template: '<div id="ngSlider_{{uniqueName}}" ng-style="sliderStyle">' +
@@ -88,7 +95,7 @@ var MultiSlider = function(data, datapoints, sliderconfig, histoconfig, sliderhe
 
     var moving = undefined;
 
-    var histogram = new Histogram();
+    var histogram = new Histogram(ctrl);
     var axis = new Axis();
 
     var sorter = function (a, b) {
@@ -140,7 +147,6 @@ var MultiSlider = function(data, datapoints, sliderconfig, histoconfig, sliderhe
             .style('z-index', 88888888)
             .style('box-shadow', '1px 1px 1px gray');
 
-        //console.log(data.reverse(), lefts);
         if(controller.dragStop){
             controller.dragStop(data.reverse());
         }
@@ -258,9 +264,12 @@ var MultiSlider = function(data, datapoints, sliderconfig, histoconfig, sliderhe
     return instance;
 };
 
-var Histogram = function(){
+var Histogram = function(ctrl){
 
-    var draw = function (datapoints, barWidth, yScale, topOfNegatives, name, color, histoColor){
+    var that = this;
+    that.controller = ctrl;
+
+    this.draw = function (datapoints, barWidth, yScale, topOfNegatives, name, color, histoColor){
 
         var relativeParent = d3.select('#ngSliderContainer_'+name);
 
@@ -306,7 +315,14 @@ var Histogram = function(){
             .style('cursor', 'pointer')
             .style('margin-left', '1px')
             .on("mouseover", function(d,i) {
-                console.log('mouse over', d , d3.select(this).style('height'), i);
+                //console.log('mouse over', d , d3.select(this).style('height'), i);
+                var hoverPoint = {
+                    data:d,
+                    index:i
+                };
+
+                that.controller.hoverDataPoint({data: hoverPoint});
+
                 d3.select(this)
                     .transition()
                     .duration(50)
@@ -329,7 +345,7 @@ var Histogram = function(){
     }
 
     return{
-        draw:draw
+        draw: this.draw
     }
 }
 

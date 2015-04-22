@@ -45,7 +45,7 @@ multipointApp.controller('exampleMultiSliderController', ['$scope', function($sc
     $scope.sliderConfig[1] = new ngMultiPoint.ScaleConfig(1, 1400, 20, 520);
     $scope.histogramConfig[1] = new ngMultiPoint.ScaleConfig(1, 1400, 1, 200);
 
-    $scope.data[2] = [-195, -140, -50, 110, 230, 360, 470];
+    $scope.data[2] = [-140, -100, -50, 110, 230, 360, 470];
     $scope.dataPoints[2] = [
         {value:-33, label:"First", data:{field1:"..."}},
         {value:-44, label:"Second", data:{field1:"..."}},
@@ -57,23 +57,27 @@ multipointApp.controller('exampleMultiSliderController', ['$scope', function($sc
         {value:-123,label:"Eighth", data:{field1:"..."}},
         {value:-133,label:"Ninth", data:{field1:"..."}},
         {value:144,label:"Tenth", data:{field1:"..."}},
-        {value:177, label:"First", data:{field1:"..."}},
-        {value:234, label:"Second", data:{field1:"..."}},
-        {value:256, label:"Third", data:{field1:"..."}},
-        {value:277, label:"Fourth", data:{field1:"..."}},
-        {value:289, label:"Fifth", data:{field1:"..."}},
-        {value:305, label:"Sixth", data:{field1:"..."}},
-        {value:340,label:"Seventh", data:{field1:"..."}},
-        {value:380,label:"Eighth", data:{field1:"..."}},
-        {value:429,label:"Ninth", data:{field1:"..."}},
-        {value:450,label:"Tenth", data:{field1:"..."}},
-        {value:490,label:"Eleventh", data:{field1:"..."}}];
+        {value:177, label:"Eleventh", data:{field1:"..."}},
+        {value:234, label:"Twelfth", data:{field1:"..."}},
+        {value:256, label:"Thirteenth", data:{field1:"..."}},
+        {value:277, label:"Fourteenth", data:{field1:"..."}},
+        {value:289, label:"Fifteenth", data:{field1:"..."}},
+        {value:305, label:"Sixteenth", data:{field1:"..."}},
+        {value:340,label:"Seventeenth", data:{field1:"..."}},
+        {value:380,label:"Eighteenth", data:{field1:"..."}},
+        {value:429,label:"Nineteenth", data:{field1:"..."}},
+        {value:450,label:"Twentieth", data:{field1:"..."}},
+        {value:490,label:"Twenty first", data:{field1:"..."}}];
 
     $scope.sliderConfig[2] = new ngMultiPoint.ScaleConfig(-200, 500, 1, 500);
     $scope.histogramConfig[2] = new ngMultiPoint.ScaleConfig(-200, 500, 1, 50);
 
-    $scope.reportOnDragStop = function(d){
-        console.log('Dragging stopped. Here are the range points', d);
-    }
+    $scope.reportOnDragStop = function(data){
+        console.log('Dragging stopped. Here are the range points:', data);
+    };
+
+    $scope.hoverOnDataPoint = function(data){
+        console.log('Hovered on data point:', data);
+    };
 
 }]);
