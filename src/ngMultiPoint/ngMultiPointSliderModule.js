@@ -5,15 +5,10 @@ var ngMultiSliderModule = angular.module('ngMultiPointSliderModule', []);
 ngMultiSliderModule.controller('ngMultiPointSliderController', ['$scope', '$timeout',
 
         function($scope, $timeout) {
-
-            console.log('in the controller', $scope);
-
             $scope.timeout = $timeout;
-
-            $scope.bob = function(){
-                return 'bob';
-            }
         }
+
+
 ]);
 
 ngMultiSliderModule.directive('ngMultiPointSlider', function() {
@@ -30,25 +25,34 @@ ngMultiSliderModule.directive('ngMultiPointSlider', function() {
             uniqueName:'@',
             backColor:'@',
             histogramHoverColor:'@',
-            showAxis:'@'
+            showAxis:'@',
+            onReleaseSlider: '&'
         },
         controller: 'ngMultiPointSliderController',
-        link: function (scope, elem, attrs) {
+        link: function (scope, elem, attrs, ctrl) {
 
             var slider = new MultiSlider(scope.data, scope.datapoints, scope.sliderConfig,
-                scope.histogramConfig, scope.sliderHeight);
+                scope.histogramConfig, scope.sliderHeight, ctrl);
 
             scope.timeout(function () {
+
                 scope.offsets = {
                     top:elem.children()[0].offsetTop,
                     left:elem.children()[0].offsetLeft,
                     width:elem.children()[0].offsetWidth
                 };
+
+                ctrl.dragStop = function(data){
+                    if(scope.onReleaseSlider){
+                        scope.onReleaseSlider({d:data});
+                    }
+                };
+
                 slider.render(scope.offsets, scope.uniqueName,
                               scope.backColor, scope.histogramHoverColor);
+
             },200, true);
-
-
+            
         },
         replace: true,
         template: '<div id="ngSlider_{{uniqueName}}" ng-style="sliderStyle">' +
@@ -76,7 +80,9 @@ var ScaleFactory = function(ngMultiPoint){
 
 }(ngMultiPoint);
 
-var MultiSlider = function(data, datapoints, sliderconfig, histoconfig, sliderheight) {
+var MultiSlider = function(data, datapoints, sliderconfig, histoconfig, sliderheight, ctrl) {
+
+    var controller = ctrl;
 
     var instance = {};
 
@@ -134,7 +140,10 @@ var MultiSlider = function(data, datapoints, sliderconfig, histoconfig, sliderhe
             .style('z-index', 88888888)
             .style('box-shadow', '1px 1px 1px gray');
 
-        console.log(data.reverse(), lefts);
+        //console.log(data.reverse(), lefts);
+        if(controller.dragStop){
+            controller.dragStop(data.reverse());
+        }
     }
 
     var dragMove = function () {

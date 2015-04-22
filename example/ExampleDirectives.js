@@ -72,4 +72,8 @@ multipointApp.controller('exampleMultiSliderController', ['$scope', function($sc
     $scope.sliderConfig[2] = new ngMultiPoint.ScaleConfig(-200, 500, 1, 500);
     $scope.histogramConfig[2] = new ngMultiPoint.ScaleConfig(-200, 500, 1, 50);
 
+    $scope.reportOnDragStop = function(d){
+        console.log('Dragging stopped. Here are the range points', d);
+    }
+
 }]);

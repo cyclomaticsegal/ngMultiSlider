@@ -7,16 +7,17 @@
 </head>
 <body ng-controller="exampleMultiSliderController">
 
-<h2 style="margin: 25px 0 30px 50px">Simple Slider</h2>
-<ng-multi-point-slider  data="data[2]"
-                        unique-name="simpleSlider"
-                        slider-config="sliderConfig[2]"
-                        histogram-config="histogramConfig[2]"
-                        back-color="#4170BA"
-                        histogram-hover-color="#4FFFA6"
-                        slider-height="15"
-                        slider-style="{'margin-left':'40px','margin-top':'10px', 'padding':'10px'}">
-</ng-multi-point-slider>
+    <h2 style="margin: 25px 0 30px 50px">Simple Slider</h2>
+    <ng-multi-point-slider  data="data[2]"
+                            unique-name="simpleSlider"
+                            slider-config="sliderConfig[2]"
+                            histogram-config="histogramConfig[2]"
+                            back-color="#4170BA"
+                            histogram-hover-color="#4FFFA6"
+                            slider-height="15"
+                            on-release-slider="reportOnDragStop(d)"
+                            slider-style="{'margin-left':'40px','margin-top':'10px', 'padding':'10px'}">
+    </ng-multi-point-slider>
 
 <script type="text/javascript" src="../bower_components/d3/d3.js"></script>
 <script src="../bower_components/angularjs/angular.js"></script>
