@@ -12,9 +12,9 @@ ngMultiPointSlider is a work in progress and not yet rated as stable. Feel free 
 
 After downloading run a bower install. You should npm install if you wish run the examples.
 
-$bower install
+$ bower install
 
-$npm install
+$ npm install
 
 
 ## Configure
