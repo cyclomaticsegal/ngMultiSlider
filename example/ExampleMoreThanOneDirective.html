@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html ng-app="multipointApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Multi Point Slider Directive Demo</title>
+    <link rel="stylesheet" href="../src/ngMultiPoint/ngMultiPointSlider.css">
+</head>
+<body ng-controller="exampleMultiSliderController">
+
+<h2 style="margin: 25px 0 10px 50px">Large Multi Slider</h2>
+<ng-multi-point-slider data="data[0]"
+                       datapoints="dataPoints[0]"
+                       unique-name="largeMultipoint"
+                       slider-config="sliderConfig[0]"
+                       histogram-config="histogramConfig[0]"
+                       back-color="#4170BA"
+                       show-axis="true"
+                       slider-height="20"
+                       slider-style="{'margin-left':'50px','margin-top':'10px'}">
+</ng-multi-point-slider>
+
+<h2 style="margin: 25px 0 0 50px">Small Multi Slider</h2>
+<ng-multi-point-slider  data="data[1]"
+                        unique-name="smallMultipoint"
+                        slider-config="sliderConfig[1]"
+                        histogram-config="histogramConfig[1]"
+                        slider-height="15"
+                        slider-style="{'margin-left':'50px','margin-top':'10px'}">
+</ng-multi-point-slider>
+
+<h2 style="margin: 25px 0 10px 50px">Smaller Multi Slider</h2>
+<ng-multi-point-slider  data="data[2]"
+                        datapoints="dataPoints[2]"
+                        unique-name="smallerMultipoint"
+                        slider-config="sliderConfig[2]"
+                        histogram-config="histogramConfig[2]"
+                        back-color="#4170BA"
+                        histogram-hover-color="#F2DF8C"
+                        slider-height="10"
+                        slider-style="{'margin-left':'50px','margin-top':'10px'}">
+</ng-multi-point-slider>
+
+<h2 style="margin: 25px 0 10px 50px">Smaller Multi Slider with thicker bar</h2>
+<ng-multi-point-slider  data="data[2]"
+                        datapoints="dataPoints[2]"
+                        show-axis="true"
+                        unique-name="smallerMultipointWithThickerBar"
+                        slider-config="sliderConfig[2]"
+                        histogram-config="histogramConfig[2]"
+                        back-color="#4170BA"
+                        histogram-hover-color="#4FFFA6"
+                        slider-height="15"
+                        slider-style="{'margin-left':'50px','margin-top':'10px', 'padding':'20px'}">
+</ng-multi-point-slider>
+
+<script type="text/javascript" src="../bower_components/d3/d3.js"></script>
+<script src="../bower_components/angularjs/angular.js"></script>
+<script src="../src/ngMultiPoint/ngMultiPointSliderModule.js"></script>
+<script src="ExampleDirectives.js"></script>
+
+</body>
+</html>
