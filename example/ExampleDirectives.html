@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app="multipointApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Multi Point Slider Directive Demo</title>
+    <link rel="stylesheet" href="../ngMultiPoint/ngMultiPointSlider.css">
+</head>
+<body ng-controller="exampleMultiSliderController">
+
+    <ng-multi-point-slider data="data[0]"
+                           datapoints="dataPoints[0]"
+                           slider-config="sliderConfig[0]"
+                           histogram-config="histogramConfig[0]"
+                           slider-height="20"
+                           slider-style="{'margin-left':'50px','margin-top':'40px'}">
+    </ng-multi-point-slider>
+
+    <script type="text/javascript" src="../../bower_components/d3/d3.js"></script>
+    <script src="../../bower_components/angularjs/angular.js"></script>
+    <script src="../ngMultiPoint/ngMultiPointSliderModule.js"></script>
+    <script src="ExampleDirectives.js"></script>
+
+</body>
+
+</html>
